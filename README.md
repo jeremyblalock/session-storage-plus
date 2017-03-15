@@ -13,7 +13,7 @@ sharedSessionStorage.setItem('key');
 
 // Retrieving is always asynchronous, and will use the local
 // value if available, or request the value from other windows otherwise.
-sharedSessionStorage.getItem('key', [timeout=100], function(value) {
+sharedSessionStorage.getItem('key', [timeout=20], function(value) {
   if (value == null) {
     // The value will be null if the value is not set in sessionStorage,
     // and no other tabs responded with the value.
@@ -29,6 +29,10 @@ sharedSessionStorage.getItem('key', [timeout=100], function(value) {
 // and asyncronously in other windows.
 sharedSessionStorage.removeItem('key');
 ```
+
+### Timeout
+
+When the timeout is reached, `undefined` will be returned. If not specified, the timeout will be 20ms. From testing, the message response time never exceeded 2ms.
 
 
 ## Dependencies
