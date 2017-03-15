@@ -7,12 +7,12 @@ Multi-tab sessionStorage
 ```javascript
 var sharedSessionStorage = require('shared-session-storage');
 
-// Setting keys happens syncronously in this window,
-// and asynchronously updates other windows.
+// Setting keys happens syncronously in this window, and
+// asyncronously updates other windows.
 sharedSessionStorage.setItem('key');
 
 // Retrieving is always asynchronous, and will use the local
-// value if available, or request the value from other tabs otherwise.
+// value if available, or request the value from other windows otherwise.
 sharedSessionStorage.getItem('key', [timeout=100], function(value) {
   if (value == null) {
     // The value will be null if the value is not set in sessionStorage,
@@ -24,6 +24,10 @@ sharedSessionStorage.getItem('key', [timeout=100], function(value) {
     console.log('Successfully retrieved:', value);
   }
 });
+
+// Removing keys, like setting happens syncronously in this window,
+// and asyncronously in other windows.
+sharedSessionStorage.removeItem('key');
 ```
 
 
