@@ -19,7 +19,7 @@ sharedSessionStorage.getItem('key', [timeout=100], function(value) {
     // and no other tabs responded with the value.
     console.log('Oh no, it’s not defined!');
   } else {
-    // If found in localStorage or retrieved by another tab, then the
+    // If found in sessionStorage or retrieved by another tab, then the
     // non-null value will be returned.
     console.log('Successfully retrieved:', value);
   }
