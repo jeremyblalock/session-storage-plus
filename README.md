@@ -13,7 +13,7 @@ sharedSessionStorage.setItem('key');
 
 // Retrieving is always asynchronous, and will use the local
 // value if available, or request the value from other tabs otherwise.
-sharedSessionStorage.getItem('key', [timeout=100ms], function(value) {
+sharedSessionStorage.getItem('key', [timeout=100], function(value) {
   if (value == null) {
     // The value will be null if the value is not set in sessionStorage,
     // and no other tabs responded with the value.
