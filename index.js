@@ -27,7 +27,6 @@ onResult = function(key, value) {
   }
 
   if (value != null) {
-    console.log("SETTING:", key, "=>", value);
     window.sessionStorage.setItem(storageKey(key), value);
   } else {
     window.sessionStorage.removeItem(storageKey(key));
@@ -54,15 +53,12 @@ onMessage = function(message) {
   var data = message.data;
   switch (data.type) {
     case BROADCAST_REQUEST_TYPE:
-      console.log("REQUEST TYPE");
       return onRequest(data.key);
 
     case BROADCAST_RESULT_TYPE:
-      console.log("RESULT TYPE");
       return onResult(data.key, data.value);
 
     default:
-      console.log('UNEXPECTED TYPE:', data.type);
       break;
   }
 }
