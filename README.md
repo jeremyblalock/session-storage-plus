@@ -17,7 +17,7 @@ sharedSessionStorage.getItem('key', [timeout=100], function(value) {
   if (value == null) {
     // The value will be null if the value is not set in sessionStorage,
     // and no other tabs responded with the value.
-    console.log('Oh no, it's not defined!');
+    console.log('Oh no, it’s not defined!');
   } else {
     // If found in localStorage or retrieved by another tab, then the
     // non-null value will be returned.
