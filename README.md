@@ -25,3 +25,10 @@ sharedSessionStorage.getItem('key', [timeout=100], function(value) {
   }
 });
 ```
+
+
+## Dependencies
+
+None!
+
+This is a simple package and it should always remain that way.
