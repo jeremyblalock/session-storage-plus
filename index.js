@@ -2,7 +2,7 @@ var DEFAULT_TIMEOUT = 20;
 var BROADCAST_CHANNEL_AVAILABLE = window && window.BroadcastChannel != null
 var BROADCAST_REQUEST_TYPE = 'request'
 var BROADCAST_RESULT_TYPE = 'result'
-var CHANNEL_NAME = 'shared-session-storage-broadcast';
+var CHANNEL_NAME = 'session-storage-plus-broadcast';
 var STORAGE_PREFIX = 'shared-session-';
 
 var subscriptions = {},
