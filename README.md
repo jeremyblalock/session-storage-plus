@@ -2,14 +2,20 @@
 
 Multi-tab sessionStorage
 
+## Installing
+
+```
+npm install session-storage-plus
+```
+
 ## Usage
 
 ```javascript
-var sharedSessionStorage = require('shared-session-storage');
+var sessionStoragePlus = require('session-storage-plus');
 
-sharedSessionStorage.setItem('key');
+sessionStoragePlus.setItem('key');
 
-sharedSessionStorage.getItem('key', function(value) {
+sessionStoragePlus.getItem('key', function(value) {
   if (value == null) {
     console.log('Oh no, it’s not defined!');
   } else {
@@ -17,7 +23,7 @@ sharedSessionStorage.getItem('key', function(value) {
   }
 });
 
-sharedSessionStorage.removeItem('key');
+sessionStoragePlus.removeItem('key');
 ```
 
 ----
