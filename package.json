@@ -1,5 +1,5 @@
 {
-  "name": "shared-session-storage",
+  "name": "session-storage-plus",
   "version": "0.0.1",
   "description": "Multi-tab sessionStorage",
   "main": "index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeremyblalock/shared-session-storage.git"
+    "url": "git+https://github.com/jeremyblalock/session-storage-plus.git"
   },
   "author": "Jeremy Blalock",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jeremyblalock/shared-session-storage/issues"
+    "url": "https://github.com/jeremyblalock/session-storage-plus/issues"
   },
-  "homepage": "https://github.com/jeremyblalock/shared-session-storage#readme"
+  "homepage": "https://github.com/jeremyblalock/session-storage-plus#readme"
 }
