@@ -8,7 +8,7 @@ var STORAGE_PREFIX = 'shared-session-';
 var subscriptions = {},
     globalCount = 0;
 
-var channel, broadcast, getItem, setItem, removeItem,
+var storage, channel, broadcast, getItem, setItem, removeItem,
     onMessage, onRequest, onResult, broadcastResult, storageKey;
 
 storageKey = function(key) {
@@ -27,14 +27,14 @@ onResult = function(key, value) {
   }
 
   if (value != null) {
-    window.sessionStorage.setItem(storageKey(key), value);
+    storage('setItem', storageKey(key), value);
   } else {
-    window.sessionStorage.removeItem(storageKey(key));
+    storage('removeItem', storageKey(key));
   }
 }
 
 onRequest = function(key) {
-  let value = window.sessionStorage.getItem(storageKey(key));
+  let value = storage('getItem', storageKey(key));
 
   if (value != null) {
     broadcastResult(key, value);
@@ -69,7 +69,7 @@ getItem = function(key, timeout, callback) {
     timeout = DEFAULT_TIMEOUT;
   }
 
-  var localValue = window.sessionStorage.getItem(storageKey(key));
+  var localValue = storage('getItem', storageKey(key));
 
   if (localValue != null || !BROADCAST_CHANNEL_AVAILABLE) {
     callback(localValue);
@@ -92,15 +92,23 @@ getItem = function(key, timeout, callback) {
 };
 
 setItem = function(key, value) {
-  window.sessionStorage.setItem(storageKey(key), value);
+  storage('setItem', storageKey(key), value);
 
   broadcastResult(key, value);
 };
 
 removeItem = function(key) {
-  window.sessionStorage.removeItem(storageKey(key));
+  storage('removeItem', storageKey(key));
 
   broadcastResult(key, null);
+}
+
+// Abstract the calls to window.sessionStorage to prevent uncaught errors.
+storage = function(key) {
+  var args = arguments.slice(1);
+  if (window && window.sessionStorage) {
+    return window.sessionStorage[key].apply(window.sessionStorage, args)
+  }
 }
 
 
@@ -116,30 +124,9 @@ if (BROADCAST_CHANNEL_AVAILABLE) {
 }
 
 
-// Only allow us to run normal operation if sessionStorage is available.
-if (window && window.sessionStorage) {
+module.exports = {
+  getItem    : getItem,
+  setItem    : setItem,
+  removeItem : removeItem
+};
 
-  module.exports = {
-    getItem    : getItem,
-    setItem    : setItem,
-    removeItem : removeItem
-  };
-
-} else {
-
-  var noop = function() {}
-  var dummyGetItem = function(key, timeout, callback) {
-    if (callback == null) {
-      callback = timeout;
-    }
-  
-    if (callback) callback(null);
-  }
-
-  module.exports = {
-    getItem: dummyGetItem,
-    setItem: noop,
-    removeItem: noop
-  }
-
-}
