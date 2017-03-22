@@ -1,6 +1,6 @@
 {
   "name": "session-storage-plus",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Multi-tab sessionStorage",
   "main": "index.js",
   "scripts": {
