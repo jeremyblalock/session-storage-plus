@@ -42,6 +42,8 @@ onRequest = function(key) {
 }
 
 broadcastResult = function(key, value) {
+  if (!BROADCAST_CHANNEL_AVAILABLE) return;
+
   channel.postMessage({
     type: BROADCAST_RESULT_TYPE,
     key: key,
@@ -105,7 +107,10 @@ removeItem = function(key) {
 
 // Abstract the calls to window.sessionStorage to prevent uncaught errors.
 storage = function(key) {
-  var args = arguments.slice(1);
+  var args = [];
+  for (var i = 1; i < arguments.length; i += 1) {
+    args.push(arguments[i])
+  }
   if (window && window.sessionStorage) {
     return window.sessionStorage[key].apply(window.sessionStorage, args)
   }
