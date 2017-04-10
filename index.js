@@ -34,7 +34,7 @@ onResult = function(key, value) {
 }
 
 onRequest = function(key) {
-  let value = storage('getItem', storageKey(key));
+  var value = storage('getItem', storageKey(key));
 
   if (value != null) {
     broadcastResult(key, value);
